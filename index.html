@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Neural Relighting with Subsurface Scattering by Learning the Radiance Transfer Gradient">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nerfies: Deformable Neural Radiance Fields</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Neural Relighting with Subsurface Scattering by Learning the Radiance Transfer Gradient</h1>
+          
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+                <!--
+              <span class="link-block">
+                <a href="https://TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>arXiv (Coming Soon)</span>
+                </a>
+              </span>
+                -->
+              <span class="link-block">
+                <a href="https://TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://TODO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data (Coming Soon)</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Relightable Neural Assets with Subsurface Scattering Effects.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          Reconstructing and relighting objects and scenes under varying lighting
+conditions is challenging: existing neural rendering methods often cannot
+handle the complex interactions between materials and light. Incorporating
+pre-computed radiance transfer techniques enables global illumination, but
+still struggles with materials with subsurface scattering effects. We propose
+a novel framework for learning the radiance transfer field via volume rendering and utilizing various appearance cues to refine geometry end-to-end.
+This framework extends relighting and reconstruction capabilities to handle
+a wider range of materials in a data-driven fashion. The resulting models
+produce plausible rendering results in existing and novel conditions. 
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Overview</h2>
+
+        <div class="content has-text-justified">
+          <img src="./static/images/teaser.png"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+            <!-- <p>Start Frame</p> -->
+        </div>
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Comparisons with State-of-the-art</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Our visual quality advanced representative state-of-the-arts approaches, including 
+            <a href="https://kai-46.github.io/IRON-website/">IRON</a> (BRDF-based),
+            <a href="https://www.cs.cornell.edu/~xideng/deng22dsss.html">InverseTranslucent</a> (BSSRDF-based), and
+            <a href="https://people.mpi-inf.mpg.de/~mhaberma/projects/2022-NRTF/index.htm">NRTF</a> (data-driven). <!-- Each
+            demonstration showcases the scene appearance under the lighting condition, with the 
+            first round, the poing light goes around the scene observed from the same view, and
+            the second round, the camera goes around the scene with the fixed lighting condition.  -->
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <video id="sliding_8_diag" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/type6_slidingDiag_caseID_8.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="sliding_8_square" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/type3_slidingShared2x2_caseID_8.mp4"
+                      type="video/mp4">
+            </video>
+            
+          </div>
+
+        </div>
+      </div>
+      <!--/ Matting. -->
+
+    </div>
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <video id="sliding_7_diag" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/type6_slidingDiag_caseID_7.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="sliding_7_square" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/type3_slidingShared2x2_caseID_7.mp4"
+                      type="video/mp4">
+            </video>
+            
+          </div>
+
+        </div>
+      </div>
+      <!--/ Matting. -->
+
+    </div>
+
+    <!--
+    <div class="columns is-centered">
+
+      <div class="column">
+        <div class="content">
+          <video id="sliding_1_diag" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/type6_slidingDiag_caseID_1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="sliding_1_square" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/type3_slidingShared2x2_caseID_1.mp4"
+                      type="video/mp4">
+            </video>
+            
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    -->
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+
+        <div class="content has-text-justified">
+          <video id="common_1" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/common1x4_caseID_1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+
+        <div class="content has-text-justified">
+          <video id="common_6" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/common1x4_caseID_6.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Relighting with Envmap Lighting Conditions</h2>
+
+        <h3 class="title is-4">On Real Data - Captured Light Stage Data</h3>
+        <div class="content">
+          <p> Here each row showcases the same scene, and each colume showcases the same input lighting condition (depicted in the first row).
+          </p>
+        </div>
+        <div class="content has-text-justified">
+          <div class="content has-text-justified">
+            <img src="./static/images/envmap_real.png"
+                   class="interpolation-image"
+                   alt="Interpolate start reference image."/>
+              <!-- <p>Start Frame</p> -->
+          </div>
+        </div>
+
+        <h3 class="title is-4">On Synthetic Data</h3>
+            <div class="content">
+              <p> The first eight rows are the original Nerf-Synthetic Data, and the last eight rows are their subsurface scattering counterpart, 
+                where the materials have been modified to be with the subsurface scattering shaders in blender.
+              </p>
+            </div>
+        <!--
+        <p> The first eight rows are the original Nerf-Synthetic Data, and the last eight rows are their subsurface scattering counterpart, 
+          where the materials have been modified to be with the subsurface scattering shaders in blender.
+        </p>
+        -->
+        <div class="content has-text-justified">
+          <div class="content has-text-justified">
+            <img src="./static/images/envmap_syn.png"
+                   class="interpolation-image"
+                   alt="Interpolate start reference image."/>
+              <!-- <p>Start Frame</p> -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+  </div>
+</section>
+
+
+<!--
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section>
+-->
+
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We use the website design from <a
+            href="https://github.com/nerfies/nerfies.github.io">the Nerfies website</a> with our own content and thank the authors for sharing it under the <a rel="license"
+            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <!--
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
